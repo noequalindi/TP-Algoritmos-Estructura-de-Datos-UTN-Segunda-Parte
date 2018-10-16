@@ -3,12 +3,13 @@
 #include <cstdlib>
 #include <string>
 using namespace std;
-#include "Ejercicio1.hpp"
-#include "structs.hpp"
+#include "/Users/canteros/Documents/Algoritmos/TP_AyED_Segunda_Parte/Ejercicio1.hpp"
+#include "/Users/canteros/Documents/Algoritmos/TP_AyED_Segunda_Parte/Ejercicio1.cpp"
+#include "/Users/canteros/Documents/Algoritmos/TP_AyED_Segunda_Parte/structs.hpp"
 
 int main() {
 	
-	int lenGoles = 10;	
+	int lenGoles = 169;	
 	RegistroDeGoles goles[lenGoles];
 	cargarRegistroDeGoles(goles);
 	cout << "prueba"<<endl;
