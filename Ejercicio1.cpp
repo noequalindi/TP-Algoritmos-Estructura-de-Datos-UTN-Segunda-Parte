@@ -4,8 +4,8 @@
 #include <cstdlib>
 using namespace std;
 
-#include "/Users/canteros/Documents/Algoritmos/TP_AyED_Segunda_Parte/Ejercicio1.hpp"
-#include "/Users/canteros/Documents/Algoritmos/TP_AyED_Segunda_Parte/structs.hpp"
+#include "Ejercicio1.hpp"
+#include "structs.hpp"
 
 
 
@@ -881,14 +881,8 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[])
     goles[167].id_partido=64;
     goles[168].id_partido=64;
 	
-	/*
-	goles[9].id_partido = 4;
-	goles[9].id_gol = 9;
-	goles[9].codigo_equipo = 8;
-	goles[9].fecha = 15062018;
-	strcpy(goles[9].nombre_jugador, "Diego Costa");
-	*/
-return;
+
+	return;
     
 }
 void insertar(RegistroDeGoles goles[], int &lenGoles, RegistroDeGoles regGoles, int pos)

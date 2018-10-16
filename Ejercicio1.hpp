@@ -1,7 +1,7 @@
 #ifndef Ejercicio1
 #define Ejercicio1
 
-#include "/Users/canteros/Documents/Algoritmos/TP_AyED_Segunda_Parte/structs.hpp"
+#include "structs.hpp"
 void cargarRegistroDeGoles(RegistroDeGoles goles[]);
 void generarRegistro(RegistroDeGoles goles[], int lenGoles);
 void mostrarRegistroDeGoles();
