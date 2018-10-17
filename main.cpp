@@ -5,7 +5,6 @@
 using namespace std;
 
 #include "Ejercicio1.hpp"
-#include "Ejercicio1.cpp"
 #include "structs.hpp"
 
 int main() {
@@ -31,6 +30,6 @@ int main() {
 	//Mostramos contenido en consola, recorriendo el archivo,  para verificacion.
 
 	mostrarRegistroDeGoles();
-	
+	system("Pause");
 	return 0;
 }

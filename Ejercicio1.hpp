@@ -6,12 +6,14 @@
 
 void cargarRegistroDeGoles(RegistroDeGoles goles[]);
 
-void generarRegistro(RegistroDeGoles goles[]);
+void generarRegistro(nodoArbol* arbol);
 
 void mostrarRegistroDeGoles();
 
 
 Nodo * VectorArbol(RegistroDeGoles goles[], int lenGoles);
+nodoArbol * VectorAArbol(RegistroDeGoles goles[], int lenGoles); 	//Cargamos la informacion a un arbol binario, siguiendo criterio de orden por Equipo y por fecha.
+
 
 void insertarNodo(nodoArbol* &arbol,RegistroDeGoles valor);	
 

@@ -6,7 +6,7 @@ using namespace std;
 
 #include "Ejercicio2.hpp"
 #include "structs.hpp"
-
+/*
 void crearListaAPartirDeArchivo(InfoGoles *listaDeGoles, Equipo equipos[])
 {
 
@@ -34,9 +34,10 @@ return;
       aux->sgte = nuevo; 
     } 
 }
+*/
 
-void procesarRegistroDeGoles(FILE *f, InfoGoles* &goles){
-	FILE * regGoles = fopen (nombre,"rb");
+/*void procesarRegistroDeGoles(FILE *f, InfoGoles* &goles){
+	FILE * regGoles = fopen (RegistroGoles,"rb");
 	Archivo reg;
 	fread(&reg,sizeof(Archivo),1,regGoles);
 	while(!feof(regGoles)){
@@ -45,6 +46,6 @@ void procesarRegistroDeGoles(FILE *f, InfoGoles* &goles){
 	}	
 	fclose(regGoles);	
 	return;
-}
+}*/
 
 
