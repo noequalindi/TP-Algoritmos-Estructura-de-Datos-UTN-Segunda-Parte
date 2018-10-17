@@ -31,7 +31,16 @@ struct Equipo
 };
 
 
+struct Nodo{
+RegistroDeGoles info;
+ Nodo* sig;
+};
 
+struct nodoArbol{
+		nodoArbol* izq;
+		RegistroDeGoles info;
+		nodoArbol* der;			
+	};
 
 
 

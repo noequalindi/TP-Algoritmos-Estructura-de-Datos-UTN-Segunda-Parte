@@ -9,7 +9,8 @@ using namespace std;
 
 
 
-void cargarRegistroDeGoles(RegistroDeGoles goles[])
+
+void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con informacion en memoria.
 {
 	
     goles[0].id_gol=0;
@@ -885,52 +886,77 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[])
 	return;
     
 }
-void insertar(RegistroDeGoles goles[], int &lenGoles, RegistroDeGoles regGoles, int pos)
+
+nodoArbol * VectorAArbol(RegistroDeGoles goles[], int lenGoles) 	//Cargamos la informacion a un arbol binario, siguiendo criterio de orden por Equipo y por fecha.
 {
 
-	for (int i=lenGoles-1; i>=pos; i--)
-	{
-		goles[i+1]=goles[i];
-	}
-	
-	goles[pos] = regGoles;
-	lenGoles ++;
-	return;
+	nodoArbol * raiz=NULL;
+
+	for(int i=0; i<lenGoles+1; i++) {
+
+        insertarNodo(raiz,goles[i]);
+		
+	    }
+    return raiz;
 }
 
-int insertarOrdenado(RegistroDeGoles goles[], int &lenGoles, RegistroDeGoles regGoles)
-{
-	int i=0;
 
-	while(i < lenGoles && goles[i].codigo_equipo <= regGoles.codigo_equipo) {
-		i++;
-	}	
-	
-	insertar(goles, lenGoles, regGoles, i);
-	return i;
-	
-}
-void generarRegistro(RegistroDeGoles goles[], int lenGoles)
+void generarRegistro(nodoArbol* arbol)	// Leemos el arbol con metodo InOrden y guardamos en archivo.
+
 {
 	FILE * fileRegistroDeGoles = fopen("RegistroGoles.dat", "wb");
+
     RegistroDeGoles regGoles;
     
-    for (int i = 0; i < lenGoles; i++) {
-    	regGoles.codigo_equipo = goles[i].codigo_equipo;
-    	regGoles.fecha = goles[i].fecha;
-        regGoles.id_gol = goles[i].id_gol;
-        regGoles.id_partido = goles[i].id_partido;
-        strcpy(regGoles.nombre_jugador, goles[i].nombre_jugador);
-        fwrite(&regGoles, sizeof(RegistroDeGoles), 1, fileRegistroDeGoles);
-    }
+    inOrden(arbol,fileRegistroDeGoles);
+	
     fclose(fileRegistroDeGoles);
+
 	return;
 }
 
-void mostrarRegistroDeGoles()
+void mostrarRegistroDeGoles()  	//Mostramos contenido en consola, recorriendo el archivo,  para verificacion.
 {
     FILE * fileRegistroDeGoles = fopen("RegistroGoles.dat", "rb");
     RegistroDeGoles regGoles;
+
+
+    char paises[32][13]= 
+        {"ARGENTINA",
+        "AUSTRALIA",
+        "BELGIUM",
+        "BRAZIL",
+        "COLOMBIA",
+        "COSTA RICA",
+        "CROATIA",
+        "DENMARK",
+        "EGYPT",
+        "ENGLAND",
+        "FRANCE",
+        "GERMANY",
+        "ICELAND",
+        "IRAN",
+        "JAPAN",
+        "MEXICO",
+        "MOROCCO",
+        "NIGERIA",
+        "PANAMA",
+        "PERU",
+        "POLAND",
+        "PORTUGAL",
+        "RUSSIA",
+        "SAUDI ARABIA",
+        "SENEGAL",
+        "SERBIA",
+        "SOUTH KOREA",
+        "SPAIN",
+        "SWEDEN",
+        "SWITZERLAND",
+        "TUNISIA",
+        "URUGUAY"
+        };
+
+
     fread(&regGoles, sizeof(RegistroDeGoles), 1, fileRegistroDeGoles);
     cout << "_______________________________________________________________" << endl;
     cout << "******** REGISTRO DE GOLES DE CADA PARTIDO POR EQUIPO ******** " << endl;
@@ -938,11 +964,11 @@ void mostrarRegistroDeGoles()
     while (!feof(fileRegistroDeGoles))
     {
     	
-        cout << "CODIGO DE EQUIPO " << regGoles.codigo_equipo << " -> ";
+        cout << "Gol de " << paises[regGoles.codigo_equipo] <<"("<<regGoles.codigo_equipo<< ")! -> ";
         cout << "FECHA " << regGoles.fecha << endl;
         cout << "IDENTIFICADOR DEL GOL " << regGoles.id_gol << endl;
         cout << "IDENTIFICADOR DEL PARTIDO " << regGoles.id_partido << endl;
-        cout << "NOMBRE DEL JUGADOR " << regGoles.nombre_jugador << endl;
+        cout << "NOMBRE DEL JUGADOR " << regGoles.nombre_jugador << endl << endl;
         fread(&regGoles,sizeof(RegistroDeGoles),1,fileRegistroDeGoles);
     }
     cout << "_______________________________________________________________" << endl;
@@ -950,4 +976,66 @@ void mostrarRegistroDeGoles()
     cout << "_______________________________________________________________" << endl;
     fclose(fileRegistroDeGoles);
     return;
+}
+
+void insertarNodo(nodoArbol* &ptrArbol,RegistroDeGoles valor)
+{
+	if(ptrArbol==NULL){
+		nodoArbol* aux=new nodoArbol();
+		aux->info=valor;
+		
+		aux->izq=NULL;
+		aux->der=NULL;
+		ptrArbol=aux;
+	}
+	else{
+		if(valor.codigo_equipo<ptrArbol->info.codigo_equipo){
+			
+			insertarNodo(ptrArbol->izq,valor);
+			
+		}
+		else{
+		
+			if(valor.codigo_equipo>ptrArbol->info.codigo_equipo){
+				insertarNodo(ptrArbol->der,valor);
+				
+				}
+			else{//
+				
+				if(valor.fecha<ptrArbol->info.fecha){
+			
+					insertarNodo(ptrArbol->izq,valor);
+			
+					}
+				else{
+					insertarNodo(ptrArbol->der,valor);
+					}		
+				
+				}
+			
+		}
+		
+	}
+	return;
+}
+
+void inOrden(nodoArbol* arbol, FILE * &fileRegistroDeGoles)
+{
+    
+    RegistroDeGoles regGoles;
+
+	if(arbol!=NULL){
+		inOrden(arbol->izq,fileRegistroDeGoles);
+		
+        regGoles.codigo_equipo = arbol->info.codigo_equipo;
+    	regGoles.fecha = arbol->info.fecha;
+        regGoles.id_gol = arbol->info.id_gol;
+        regGoles.id_partido = arbol->info.id_partido;
+        strcpy(regGoles.nombre_jugador, arbol->info.nombre_jugador);
+
+        fwrite(&regGoles, sizeof(RegistroDeGoles), 1, fileRegistroDeGoles);
+    
+			
+		inOrden(arbol->der,fileRegistroDeGoles);
+	}
 }

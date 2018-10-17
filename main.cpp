@@ -3,19 +3,32 @@
 #include <cstdlib>
 #include <string>
 using namespace std;
+
 #include "Ejercicio1.hpp"
 #include "Ejercicio1.cpp"
 #include "structs.hpp"
 
 int main() {
 	
-	int lenGoles = 169;	
+	nodoArbol * arbol = NULL;
+	
 
+	int lenGoles = 169;	
 	RegistroDeGoles goles[lenGoles];
 
-	cargarRegistroDeGoles(goles);
+	//Generamos vector con informacion en memoria.
 
-	generarRegistro(goles, lenGoles);
+	cargarRegistroDeGoles(goles);
+	
+	//Cargamos la informacion a un arbol binario, siguiendo criterio de orden por Equipo y por fecha.
+
+	arbol=VectorAArbol(goles,lenGoles);
+
+	// Leemos el arbol con metodo InOrden y guardamos en archivo.
+
+	generarRegistro(arbol);
+
+	//Mostramos contenido en consola, recorriendo el archivo,  para verificacion.
 
 	mostrarRegistroDeGoles();
 	

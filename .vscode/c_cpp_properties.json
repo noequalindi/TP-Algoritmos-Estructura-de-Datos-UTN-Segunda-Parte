@@ -4,7 +4,7 @@
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}",
-                "${workspaceRoot}"
+                "/Users/canteros/Documents/Algoritmos/TP_AyED_Segunda_Parte/"
             ],
             "defines": [],
             "macFrameworkPath": [
