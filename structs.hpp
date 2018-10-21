@@ -10,25 +10,27 @@ struct RegistroDeGoles
 	char nombre_jugador[20];
 	int id_partido;	
 };
-
-struct InfoGoles
-{
-	char nombre_jugador[20];
-	int goles;
-	long int fecha;
-	InfoGoles *sgte;
-};
-struct Partido
-{
-	int id_partido;
-	InfoGoles info;
-	Partido *sgte;
-};
 struct Equipo
 {
 	int codigo_equipo;
-	Partido info;
+	RegistroDeGoles infoGol;
 };
+
+struct Partido
+{
+	int id_partido;
+	Equipo equipos;
+	Partido *sgtePartido;
+};
+struct InfoGoles
+{
+	char nombre_jugador[20];
+	int id_gol;
+	long int fecha;
+	Partido *partidos;
+};
+
+
 
 
 struct Nodo{

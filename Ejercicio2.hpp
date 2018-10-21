@@ -3,8 +3,11 @@
 
 #include "structs.hpp"
 
-void crearListaAPartirDeArchivo(InfoGoles *listaDeGoles, InfoGoles matriz[32][8]);
-void agregarNodoInfoGoles(InfoGoles*& p, InfoGoles x);
-
+void procesarRegistroDeGoles(FILE *fileRegistroDeGoles, Partido*&partidos, Equipo equipos[]);
+void agregarPartido(Partido* partido, int codigo_equipo, int id_partido, int id_gol, char nombre_jugador[], long int fecha);
+Partido* buscarEInsertarPartido(Partido* partidos, RegistroDeGoles infoGol);
+Partido* insertarOrdenadoPartido(Partido*&partidos, RegistroDeGoles infoGol);
+Partido* BuscarPartido(Partido* partido, int numeroPartido);
+void mostrarPartidos(Partido* partido);
 #endif
 
