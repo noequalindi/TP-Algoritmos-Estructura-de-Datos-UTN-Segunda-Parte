@@ -40,6 +40,7 @@ struct nodoArbol{
 		RegistroDeGoles info;
 		nodoArbol* der;			
 	};
+	
 
 struct Nodo{
 RegistroDeGoles info;

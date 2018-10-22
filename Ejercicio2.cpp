@@ -22,7 +22,7 @@ void procesarRegistroDeGoles(FILE *fileRegistroDeGoles, GolesJugador *  MatrizRe
 {
 	fileRegistroDeGoles = fopen ("RegistroGoles.dat","rb");
 	RegistroDeGoles regGol,GolAnterior;
-	int i=0, partido=0;
+	int partido=0;
 
 	fread(&regGol,sizeof(RegistroDeGoles),1,fileRegistroDeGoles);
 	GolAnterior=regGol;
@@ -33,21 +33,46 @@ void procesarRegistroDeGoles(FILE *fileRegistroDeGoles, GolesJugador *  MatrizRe
 
 			while (!feof(fileRegistroDeGoles)&& regGol.codigo_equipo==GolAnterior.codigo_equipo && regGol.fecha==GolAnterior.fecha ) {
 				
-				MatrizResultados[regGol.codigo_equipo][partido]=NULL;
+				AgregarGolEnMatriz(MatrizResultados[regGol.codigo_equipo][partido], regGol);
+				fread(&regGol,sizeof(RegistroDeGoles),1,fileRegistroDeGoles);
+				GolAnterior=regGol;
 			}
-
+			partido++;
 		}
-
-	
-	fread(&regGol,sizeof(RegistroDeGoles),1,fileRegistroDeGoles);
-	i++;
 	}
-		
-
-
 	fclose(fileRegistroDeGoles);	
 	return;
 }
+
+
+void AgregarGolEnMatriz(GolesJugador *partido, RegistroDeGoles regGol){
+
+GolesJugador* nuevo=new GolesJugador();
+
+if (partido==NULL) { 
+	partido=nuevo;
+	strcpy(nuevo->nombre_jugador,regGol.nombre_jugador);
+	nuevo->fecha=regGol.fecha;
+	nuevo->CantGoles=1;
+	nuevo->sgte=NULL;
+	}
+else {
+	if(partido->nombre_jugador==regGol.nombre_jugador){
+		partido->CantGoles++;
+		delete nuevo;
+
+	}
+	else {
+		//buscar jugador ???
+
+	}	
+		
+
+	}
+
+}
+
+
 
 
 /*

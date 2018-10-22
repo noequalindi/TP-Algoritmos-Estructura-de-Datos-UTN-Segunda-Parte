@@ -12,6 +12,8 @@ void mostrarPartidos(Partido* partido);
 
 
 void inicializarMatriz (GolesJugador *  MatrizResultados[][7]);
+void AgregarGolEnMatriz(GolesJugador *, RegistroDeGoles regGol);
+
 
 
 #endif
