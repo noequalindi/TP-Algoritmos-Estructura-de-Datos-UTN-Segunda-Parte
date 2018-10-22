@@ -33,16 +33,29 @@ struct InfoGoles
 
 
 
-struct Nodo{
-RegistroDeGoles info;
- Nodo* sig;
-};
+
 
 struct nodoArbol{
 		nodoArbol* izq;
 		RegistroDeGoles info;
 		nodoArbol* der;			
 	};
+
+struct Nodo{
+RegistroDeGoles info;
+ Nodo* sig;
+};
+
+
+struct GolesJugador {
+
+	long int fecha;
+	char nombre_jugador[20];
+	int CantGoles;
+	GolesJugador *sgte;
+};
+
+GolesJugador * MatrizResultados [32][7];
 
 
 

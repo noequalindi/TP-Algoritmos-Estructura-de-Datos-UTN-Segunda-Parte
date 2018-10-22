@@ -7,46 +7,69 @@ using namespace std;
 #include "Ejercicio2.hpp"
 #include "structs.hpp"
 
-void procesarRegistroDeGoles(FILE *fileRegistroDeGoles, Partido*&partidos, Equipo equipos[])
+
+void inicializarMatriz (GolesJugador *  MatrizResultados[][7]) {
+
+	for (int i=0;i<32;i++){
+		for(int j=0;j<7;j++){
+			MatrizResultados[i][j]=NULL;
+
+		}
+	}
+}
+
+void procesarRegistroDeGoles(FILE *fileRegistroDeGoles, GolesJugador *  MatrizResultados[][7])
 {
 	fileRegistroDeGoles = fopen ("RegistroGoles.dat","rb");
-	RegistroDeGoles regGol;
-	int i=0;
+	RegistroDeGoles regGol,GolAnterior;
+	int i=0, partido=0;
+
 	fread(&regGol,sizeof(RegistroDeGoles),1,fileRegistroDeGoles);
+	GolAnterior=regGol;
+
 	while(!feof(fileRegistroDeGoles)){
 		
-		while (equipos[i].codigo_equipo == regGol.codigo_equipo)
-		{
-		
-		agregarPartido(partidos, regGol.codigo_equipo, regGol.id_partido,regGol.id_gol, regGol.nombre_jugador, regGol.fecha);
-		fread(&regGol,sizeof(RegistroDeGoles),1,fileRegistroDeGoles);
-		i++;
+		while (!feof(fileRegistroDeGoles)&& regGol.codigo_equipo==GolAnterior.codigo_equipo ){
+
+			while (!feof(fileRegistroDeGoles)&& regGol.codigo_equipo==GolAnterior.codigo_equipo && regGol.fecha==GolAnterior.fecha ) {
+				
+				MatrizResultados[regGol.codigo_equipo][partido]=NULL;
+			}
+
 		}
-	}	
+
+	
+	fread(&regGol,sizeof(RegistroDeGoles),1,fileRegistroDeGoles);
+	i++;
+	}
+		
+
+
 	fclose(fileRegistroDeGoles);	
 	return;
 }
 
 
+/*
 
 void agregarPartido(Partido* partido, int codigo_equipo, int id_partido, int id_gol, char nombre_jugador[], long int fecha)
 {
 	InfoGoles infoGol;
-	Partido* partido;
 	Partido* partidos;
+
 	infoGol.id_gol = id_gol;
 	strcpy(infoGol.nombre_jugador, nombre_jugador);
 	infoGol.fecha = fecha;
 	infoGol.partidos = NULL;
 	
-	Partido* partido = buscarEInsertarPartido(partidos,infoGol);
+	partido = buscarEInsertarPartido(partidos,infoGol);
 	return;
 		
 }
 
 Partido* buscarEInsertarPartido(Partido* partidos, RegistroDeGoles infoGol)
 {
-	Partido* buscado = buscarPartido(partidos,infoGol.id_partido);
+	Partido* buscado = BuscarPartido(partidos,infoGol.id_partido);
 	if(buscado == NULL){
 		buscado = insertarOrdenadoPartido(partidos,infoGol);		
 	}
@@ -56,7 +79,7 @@ Partido* insertarOrdenadoPartido(Partido*&partidos, RegistroDeGoles infoGol){
 	Partido* nuevo = new Partido();
 	nuevo->id_partido = infoGol.id_partido;
 	nuevo->sgtePartido = NULL;
-	Partido* aux = p;
+	Partido* aux = partidos;
 	Partido* ant = NULL;
 	
 	while (aux != NULL && aux->id_partido <= infoGol.id_partido){
@@ -86,10 +109,12 @@ void mostrarPartidos(Partido* partido)
 { 
     Partido* aux = partido;
     while( aux!=NULL ) { 
-       cout << aux->id_partido << endl;
-       cout << "Equipo " << aux->equipos.codigo_equipo << endl;
-       cout << "Gol " << aux->equipos.infoGol.id_gol << endl; 
-       cout << "___________________________" << endl;
-       aux = aux->sgtePartido; 
+		
+		cout << aux->id_partido << endl;
+		cout << "Equipo " << aux->equipos.codigo_equipo << endl;
+		cout << "Gol " << aux->equipos.infoGol.id_gol << endl; 
+		cout << "___________________________" << endl;
+		aux = aux->sgtePartido; 
     } 
 }
+*/

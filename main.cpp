@@ -20,6 +20,7 @@ int main() {
 	char nombre_jugador[20];
 	long int fecha;
 	int lenGoles = 169;	
+
 	RegistroDeGoles goles[lenGoles];
 	//Generamos vector con informacion en memoria.
 	cargarRegistroDeGoles(goles);
@@ -32,12 +33,17 @@ int main() {
 	
 	//ejercicio 2
 	procesarRegistroDeGoles(fileRegistroDeGoles, partidos, equipos);
+	
+	
+	/*
 	agregarPartido(partido, codigo_equipo, id_partido, id_gol, nombre_jugador, fecha);
 	buscarEInsertarPartido(partidos, infoGol);
 	insertarOrdenadoPartido(partidos, infoGol);
 	BuscarPartido(partido, numeroPartido);
 	mostrarPartidos(partido);
-	
+	*/
+
+
 	system("Pause");
 	return 0;
 }
