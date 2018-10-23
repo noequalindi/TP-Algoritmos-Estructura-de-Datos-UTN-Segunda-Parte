@@ -881,7 +881,7 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
 nodoArbol * VectorAArbol(RegistroDeGoles goles[], int lenGoles) 	//Cargamos la informacion a un arbol binario, siguiendo criterio de orden por Equipo y por fecha.
 {
 	nodoArbol * raiz = NULL;
-	for(int i=0; i<lenGoles+1; i++) {
+	for(int i=0; i<lenGoles; i++) {
         insertarNodo(raiz,goles[i]);
     }
     return raiz;
@@ -903,7 +903,8 @@ void mostrarRegistroDeGoles()  	// Mostramos contenido en consola, recorriendo e
     FILE * fileRegistroDeGoles = fopen("RegistroGoles.dat", "rb");
     RegistroDeGoles regGoles;
 
-    char paises[32][13]= {
+    char paises[32][13]= 
+    {
         "ARGENTINA",
         "AUSTRALIA",
         "BELGIUM",
@@ -991,6 +992,9 @@ void inOrden(nodoArbol* arbol, FILE*& fileRegistroDeGoles)
         regGoles.id_gol = arbol->info.id_gol;
         regGoles.id_partido = arbol->info.id_partido;
         strcpy(regGoles.nombre_jugador, arbol->info.nombre_jugador);
+
+        cout << regGoles.nombre_jugador << endl;
+
         fwrite(&regGoles, sizeof(RegistroDeGoles), 1, fileRegistroDeGoles);
 		inOrden(arbol->der, fileRegistroDeGoles);
 	}

@@ -7,189 +7,75 @@ using namespace std;
 #include "Ejercicio2.hpp"
 #include "structs.hpp"
 
-void llenarMatriz(GolesJugador* matriz[]) {
-    // inicia con punteros vacios
-    for (int i = 0; i < 32; i++) {
-        matriz[i] = NULL;
-    }
-    
-    FILE* fileRegistroDeGoles = fopen("RegistroGoles.dat", "rb");
-    RegistroDeGoles regGol;
-    // contador que va de 0 a 31 y recorre la matriz
-    int count = 0;
-    
-    fread(&regGol, sizeof(RegistroDeGoles), 1, fileRegistroDeGoles);
-    int equipo = regGol.codigo_equipo;
-    
-    while(!feof(fileRegistroDeGoles)) {
-        if(equipo != regGol.codigo_equipo) {
-            equipo = regGol.codigo_equipo;
-            count++;
-        }
-        insertarOSumar(matriz[count], regGol.fecha, regGol.nombre_jugador);
-        fread(&regGol, sizeof(RegistroDeGoles), 1, fileRegistroDeGoles);
-    }
-    fclose(fileRegistroDeGoles);
+
+void inicializarMatriz (GolesJugador *  MatrizResultados[][7]) {
+
+	for (int i=0;i<32;i++){
+		for(int j=0;j<7;j++){
+			MatrizResultados[i][j]=NULL;
+
+		}
+	}
 }
 
-void insertarOSumar(GolesJugador*& p, long fecha, char nombre_jugador[20]) {
-    GolesJugador* aux = p;
-    GolesJugador* ant = NULL;
-    
-    GolesJugador* nuevo = new GolesJugador();
-    nuevo->info.fecha = fecha;
-    strcpy(nuevo->info.jugador, nombre_jugador);
-    nuevo->info.goles = 1;
-    nuevo->sgte = NULL;
-    
-    // cuando aux es NULL: freno porque llegué al último
-    // cuando el registro coincide en jugador y fecha: freno porque le tengo que sumar goles
-    while (aux != NULL) {
-        if (strcmp(aux->info.jugador, nombre_jugador) == 0 && aux->info.fecha == fecha) {
-            break;
-        }
-        ant = aux;
-        aux = aux->sgte;
-    }
+void procesarRegistroDeGoles(FILE *fileRegistroDeGoles, GolesJugador *  MatrizResultados[][7])
+{
+	fileRegistroDeGoles = fopen ("RegistroGoles.dat","rb");
+	RegistroDeGoles regGol,GolAnterior;
+	int partido=0;
 
-    if (ant == NULL) {
-        // es el primero
-        p = nuevo;
-    } else if (aux == NULL) {
-        // llegué al último y no lo encontré
-        ant->sgte = nuevo;
-    } else {
-        // lo encontré. Solo sumo goles
-        aux->info.goles++;
-    }
+	fread(&regGol,sizeof(RegistroDeGoles),1,fileRegistroDeGoles);
+	GolAnterior=regGol;
+
+	while(!feof(fileRegistroDeGoles)){
+		
+		while (!feof(fileRegistroDeGoles)&& regGol.codigo_equipo==GolAnterior.codigo_equipo ){
+
+			while (!feof(fileRegistroDeGoles)&& regGol.codigo_equipo==GolAnterior.codigo_equipo && regGol.fecha==GolAnterior.fecha ) {
+				
+				//AgregarGolEnMatriz(MatrizResultados[regGol.codigo_equipo][partido], regGol);
+				fread(&regGol,sizeof(RegistroDeGoles),1,fileRegistroDeGoles);
+				GolAnterior=regGol;
+			}
+			partido++;
+		}
+	}
+	fclose(fileRegistroDeGoles);	
+	return;
 }
 
-void mostrarMatriz(GolesJugador* matriz[]) {
-    GolesJugador* aux = NULL;
-    
-    for (int i = 0; i < 32; i++) {
-        aux = matriz[i];
-        while (aux != NULL) {
-            cout << aux->info.fecha << endl;
-            cout << aux->info.jugador << endl;
-            cout << aux->info.goles << endl;
-            aux = aux->sgte;
-        }
-    }
+
+void AgregarGolEnMatriz(GolesJugador *partido, RegistroDeGoles regGol){
+
+GolesJugador* nuevo=new GolesJugador();
+
+
+if (partido==NULL) { 
+	partido=nuevo;
+	strcpy(nuevo->   nombre_jugador,regGol.nombre_jugador);
+	nuevo->fecha=regGol.fecha;
+	nuevo->CantGoles=1;
+	nuevo->sgte=NULL;
+	}
+else {
+	
+	
+	if(partido->nombre_jugador==regGol.nombre_jugador){
+		partido->CantGoles++;
+		delete nuevo;
+
+	}
+	else {
+		//buscar jugador ???
+
+	}	
+		
+
+	}
+
 }
 
-void mostrarGolesPorEquipo(GolesJugador* matriz[]) {
-    char paises[32][13]= {
-        "ARGENTINA",
-        "AUSTRALIA",
-        "BELGIUM",
-        "BRAZIL",
-        "COLOMBIA",
-        "COSTA RICA",
-        "CROATIA",
-        "DENMARK",
-        "EGYPT",
-        "ENGLAND",
-        "FRANCE",
-        "GERMANY",
-        "ICELAND",
-        "IRAN",
-        "JAPAN",
-        "MEXICO",
-        "MOROCCO",
-        "NIGERIA",
-        "PANAMA",
-        "PERU",
-        "POLAND",
-        "PORTUGAL",
-        "RUSSIA",
-        "SAUDI ARABIA",
-        "SENEGAL",
-        "SERBIA",
-        "SOUTH KOREA",
-        "SPAIN",
-        "SWEDEN",
-        "SWITZERLAND",
-        "TUNISIA",
-        "URUGUAY"
-    };
-    GolesJugador* aux = NULL;
-    int goles;
-    
-    for (int i = 0; i < 32; i++) {
-        goles = 0;
-        cout << paises[i];
-        aux = matriz[i];
-        while (aux != NULL) {
-            goles += aux->info.goles;
-            aux = aux->sgte;
-        }
-        cout << " HIZO " << goles << " GOLES" << endl;
-    }
-}
-//void inicializarMatriz (GolesJugador *  MatrizResultados[][7]) {
-//
-//    for (int i=0;i<32;i++){
-//        for(int j=0;j<7;j++){
-//            MatrizResultados[i][j]=NULL;
-//
-//        }
-//    }
-//}
-//
-//void procesarRegistroDeGoles(FILE *fileRegistroDeGoles, GolesJugador *  MatrizResultados[][7])
-//{
-//    fileRegistroDeGoles = fopen ("RegistroGoles.dat","rb");
-//    RegistroDeGoles regGol,GolAnterior;
-//    int partido=0;
-//
-//    fread(&regGol,sizeof(RegistroDeGoles),1,fileRegistroDeGoles);
-//    GolAnterior=regGol;
-//
-//    while(!feof(fileRegistroDeGoles)){
-//
-//        while (!feof(fileRegistroDeGoles)&& regGol.codigo_equipo==GolAnterior.codigo_equipo ){
-//
-//            while (!feof(fileRegistroDeGoles)&& regGol.codigo_equipo==GolAnterior.codigo_equipo && regGol.fecha==GolAnterior.fecha ) {
-//
-//                AgregarGolEnMatriz(MatrizResultados[regGol.codigo_equipo][partido], regGol);
-//                fread(&regGol,sizeof(RegistroDeGoles),1,fileRegistroDeGoles);
-//                GolAnterior=regGol;
-//            }
-//            partido++;
-//        }
-//    }
-//    fclose(fileRegistroDeGoles);
-//    return;
-//}
-//
-//
-//void AgregarGolEnMatriz(GolesJugador *partido, RegistroDeGoles regGol){
-//
-//GolesJugador* nuevo=new GolesJugador();
-//
-//if (partido==NULL) {
-//    partido=nuevo;
-//    strcpy(nuevo->nombre_jugador,regGol.nombre_jugador);
-//    nuevo->fecha=regGol.fecha;
-//    nuevo->CantGoles=1;
-//    nuevo->sgte=NULL;
-//    }
-//else {
-//    if(partido->nombre_jugador==regGol.nombre_jugador){
-//        partido->CantGoles++;
-//        delete nuevo;
-//
-//    }
-//    else {
-//        //buscar jugador ???
-//
-//    }
-//
-//
-//    }
-//
-//}
+
 
 
 /*

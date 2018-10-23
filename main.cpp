@@ -5,6 +5,8 @@
 using namespace std;
 
 #include "Ejercicio1.hpp"
+#include "Ejercicio1.cpp"
+
 #include "Ejercicio2.hpp"
 #include "structs.hpp"
 
@@ -39,14 +41,14 @@ int main() {
     // Este array es la matriz: 32 posiciones de punteros
     GolesJugador* matriz[32];
     // este método inicializa la matriz lee el archivo y llena la matriz
-    llenarMatriz(matriz);
+    //llenarMatriz(matriz);
     // la muestro para verificarla
-    mostrarMatriz(matriz);
+    //mostrarMatriz(matriz);
     // la matriz ya tiene esta forma
     // [0] -> info, sgte -> info, sgte -> ...
     // [...]
     // [31] -> info, sgte -> info, sgte -> ...
-    mostrarGolesPorEquipo(matriz);
+    //mostrarGolesPorEquipo(matriz);
     
     
 	// procesarRegistroDeGoles(fileRegistroDeGoles, partidos, equipos);
