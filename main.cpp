@@ -43,24 +43,14 @@ int main() {
     // Este array es la matriz: 32 posiciones de punteros
     	GolesJugador* matriz[32][7];
     // este método inicializa la matriz lee el archivo y llena la matriz
-<<<<<<< HEAD
-    //llenarMatriz(matriz);
-    // la muestro para verificarla
-    //mostrarMatriz(matriz);
-=======
 		llenarMatriz(matriz);
     // la muestro para verificarla
 		mostrarMatriz(matriz);
->>>>>>> master
     // la matriz ya tiene esta forma
     // [0] -> info, sgte -> info, sgte -> ...
     // [...]
     // [31] -> info, sgte -> info, sgte -> ...
-<<<<<<< HEAD
-    //mostrarGolesPorEquipo(matriz);
-=======
     	//mostrarGolesPorEquipo(matriz);
->>>>>>> master
     
     
 	// procesarRegistroDeGoles(fileRegistroDeGoles, partidos, equipos);

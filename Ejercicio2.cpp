@@ -7,77 +7,6 @@ using namespace std;
 #include "Ejercicio2.hpp"
 #include "structs.hpp"
 
-<<<<<<< HEAD
-
-void inicializarMatriz (GolesJugador *  MatrizResultados[][7]) {
-
-	for (int i=0;i<32;i++){
-		for(int j=0;j<7;j++){
-			MatrizResultados[i][j]=NULL;
-
-		}
-	}
-}
-
-void procesarRegistroDeGoles(FILE *fileRegistroDeGoles, GolesJugador *  MatrizResultados[][7])
-{
-	fileRegistroDeGoles = fopen ("RegistroGoles.dat","rb");
-	RegistroDeGoles regGol,GolAnterior;
-	int partido=0;
-
-	fread(&regGol,sizeof(RegistroDeGoles),1,fileRegistroDeGoles);
-	GolAnterior=regGol;
-
-	while(!feof(fileRegistroDeGoles)){
-		
-		while (!feof(fileRegistroDeGoles)&& regGol.codigo_equipo==GolAnterior.codigo_equipo ){
-
-			while (!feof(fileRegistroDeGoles)&& regGol.codigo_equipo==GolAnterior.codigo_equipo && regGol.fecha==GolAnterior.fecha ) {
-				
-				//AgregarGolEnMatriz(MatrizResultados[regGol.codigo_equipo][partido], regGol);
-				fread(&regGol,sizeof(RegistroDeGoles),1,fileRegistroDeGoles);
-				GolAnterior=regGol;
-			}
-			partido++;
-		}
-	}
-	fclose(fileRegistroDeGoles);	
-	return;
-}
-
-
-void AgregarGolEnMatriz(GolesJugador *partido, RegistroDeGoles regGol){
-
-GolesJugador* nuevo=new GolesJugador();
-
-
-if (partido==NULL) { 
-	partido=nuevo;
-	strcpy(nuevo->   nombre_jugador,regGol.nombre_jugador);
-	nuevo->fecha=regGol.fecha;
-	nuevo->CantGoles=1;
-	nuevo->sgte=NULL;
-	}
-else {
-	
-	
-	if(partido->nombre_jugador==regGol.nombre_jugador){
-		partido->CantGoles++;
-		delete nuevo;
-
-	}
-	else {
-		//buscar jugador ???
-
-	}	
-		
-
-	}
-
-}
-
-
-=======
 void llenarMatriz(GolesJugador* matriz[][7]) { 
     // inicia con punteros vacios
     for (int i = 0; i < 32; i++) {
@@ -302,7 +231,6 @@ void mostrarGolesPorEquipo(GolesJugador* matriz[][7]) {
 //    }
 //
 //}
->>>>>>> master
 
 
 /*
