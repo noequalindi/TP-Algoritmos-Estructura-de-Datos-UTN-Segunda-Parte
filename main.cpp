@@ -5,7 +5,7 @@
 using namespace std;
 
 #include "Ejercicio1.hpp"
-#include "Ejercicio1.cpp"
+#include "Ejercicio1.cpp" //incluido para compilar en vscode
 
 #include "Ejercicio2.hpp"
 #include "structs.hpp"
