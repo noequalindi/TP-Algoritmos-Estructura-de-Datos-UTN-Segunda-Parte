@@ -31,6 +31,7 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
     goles[8].id_gol=8;
     goles[9].id_gol=9;
     goles[10].id_gol=10;
+    
     goles[11].id_gol=11;
     goles[12].id_gol=12;
     goles[13].id_gol=13;
@@ -201,6 +202,7 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
     strcpy(goles[8].nombre_jugador,"Cristiano Ronaldo Av");
     strcpy(goles[9].nombre_jugador,"Cristiano Ronaldo Av");
     strcpy(goles[10].nombre_jugador,"Diego Costa");
+    
     strcpy(goles[11].nombre_jugador,"Diego Costa");
     strcpy(goles[12].nombre_jugador,"Nacho Fernández");
     strcpy(goles[13].nombre_jugador,"Mile Jedinak");
@@ -371,6 +373,7 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
     goles[8].codigo_equipo=21;
     goles[9].codigo_equipo=21;
     goles[10].codigo_equipo=27;
+    
     goles[11].codigo_equipo=27;
     goles[12].codigo_equipo=27;
     goles[13].codigo_equipo=1;
@@ -543,6 +546,7 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
 	goles[8].fecha=20180615;
 	goles[9].fecha=20180615;
 	goles[10].fecha=20180615;
+  
 	goles[11].fecha=20180615;
 	goles[12].fecha=20180615;
 	goles[13].fecha=20180616;
@@ -705,6 +709,7 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
 	goles[168].fecha=20180715;
 
 
+
     goles[0].id_partido=1;
     goles[1].id_partido=1;
     goles[2].id_partido=1;
@@ -716,6 +721,7 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
     goles[8].id_partido=4;
     goles[9].id_partido=4;
     goles[10].id_partido=4;
+    
     goles[11].id_partido=4;
     goles[12].id_partido=4;
     goles[13].id_partido=5;
