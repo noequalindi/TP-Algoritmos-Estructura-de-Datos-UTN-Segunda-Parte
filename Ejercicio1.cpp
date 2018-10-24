@@ -881,7 +881,7 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
 nodoArbol * VectorAArbol(RegistroDeGoles goles[], int lenGoles) 	//Cargamos la informacion a un arbol binario, siguiendo criterio de orden por Equipo y por fecha.
 {
 	nodoArbol * raiz = NULL;
-	for(int i=0; i<lenGoles+1; i++) {
+	for(int i=0; i<lenGoles; i++) {
         insertarNodo(raiz,goles[i]);
     }
     return raiz;
