@@ -44,7 +44,8 @@ int main() {
     // este método inicializa la matriz lee el archivo y llena la matriz
 		llenarMatriz(matriz);
     // la muestro para verificarla
-		mostrarMatriz(matriz);
+		//mostrarMatriz(matriz);
+		OcupacionMatriz (matriz);
     // la matriz ya tiene esta forma
     // [0] -> info, sgte -> info, sgte -> ...
     // [...]
