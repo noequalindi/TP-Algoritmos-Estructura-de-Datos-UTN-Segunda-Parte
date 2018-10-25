@@ -7,53 +7,23 @@ using namespace std;
 #include "Ejercicio2.hpp"
 #include "structs.hpp"
 
-void llenarMatriz(GolesJugador* matriz[][7]) { 
+void llenarMatriz(GolesJugador* matriz[][64]) {
     // inicia con punteros vacios
     for (int i = 0; i < 32; i++) {
-        for(int j = 0; j<7;j++){
+        for(int j = 0; j < 64; j++) {
             matriz[i][j] = NULL;
         }
-        
     }
     
     FILE* fileRegistroDeGoles = fopen("RegistroGoles.dat", "rb");
     RegistroDeGoles regGol;
-    // contador que va de 0 a 31 y recorre la matriz
-    int count = 0; //numero de partido jugado     
     
     fread(&regGol, sizeof(RegistroDeGoles), 1, fileRegistroDeGoles);
-
-    int EquipoAnterior = regGol.codigo_equipo; 
-    int FechaAnterior = regGol.fecha;  
-
     while(!feof(fileRegistroDeGoles)) {
-        
-        while(!feof(fileRegistroDeGoles) && (EquipoAnterior==regGol.codigo_equipo) ){
-            
-            count=0;
-            
-            while(!feof(fileRegistroDeGoles) && 
-                    EquipoAnterior==regGol.codigo_equipo && 
-                    FechaAnterior == regGol.fecha ){
-                    
-                
-                //cout << regGol.codigo_equipo<<" "<<count<<" "<<regGol.fecha<<" "<<regGol.nombre_jugador<<endl; 
-                insertarOSumar(matriz[regGol.codigo_equipo][count], regGol.fecha, regGol.nombre_jugador);
-                fread(&regGol, sizeof(RegistroDeGoles), 1, fileRegistroDeGoles); 
-                
-                if (FechaAnterior!=regGol.fecha) count++;
-
-                FechaAnterior=regGol.fecha;
-            }
-
-        
-        EquipoAnterior=regGol.codigo_equipo;
-        }     
-        
+        insertarOSumar(matriz[regGol.codigo_equipo][regGol.id_partido], regGol.fecha, regGol.nombre_jugador);
+        fread(&regGol, sizeof(RegistroDeGoles), 1, fileRegistroDeGoles);
     }
-
-
-
+    
     fclose(fileRegistroDeGoles);
 }
 
@@ -61,60 +31,57 @@ void llenarMatriz(GolesJugador* matriz[][7]) {
 void insertarOSumar(GolesJugador*& p, long fecha, char nombre_jugador[20]) {
     GolesJugador* aux = p;
     GolesJugador* ant = NULL;
-    
     GolesJugador* nuevo = new GolesJugador();
+    
     nuevo->info.fecha = fecha;
     strcpy(nuevo->info.jugador, nombre_jugador);
     nuevo->info.goles = 1;
     nuevo->sgte = NULL;
     
+    bool found = false;
+    
     // cuando aux es NULL: freno porque llegué al último
     // cuando el registro coincide en jugador y fecha: freno porque le tengo que sumar goles
     while (aux != NULL) {
         if (strcmp(aux->info.jugador, nombre_jugador) == 0 && aux->info.fecha==fecha) {
-            cout << "tengo que sumar goles a " << aux->info.jugador<<endl;
-            cout << "ya tiene"<< aux->info.goles<< endl ;
-            
+            found = true;
             break;
         }
         ant = aux;
         aux = aux->sgte;
     }
 
-    if (ant == NULL) {
+    if (found) {
+        // lo encontré. Solo sumo goles
+        aux->info.goles++;
+    } else if (ant == NULL) {
         // es el primero
         p = nuevo;
     } else if (aux == NULL) {
         // llegué al último y no lo encontré
         ant->sgte = nuevo;
-    } else {
-        // lo encontré. Solo sumo goles
-        aux->info.goles++;
-        cout << "sumo goles a " << aux->info.jugador<<endl;;
-        cout << "le quedan "<< aux->info.goles<<endl;
-        
     }
 }
 
-void mostrarMatriz(GolesJugador* matriz[][7]) { 
+void mostrarMatriz(GolesJugador* matriz[][64]) {
     GolesJugador* aux = NULL;
     
     for (int i = 0; i < 32; i++) {
-        cout<<"---equipo----"<<endl;
-        for (int j=0;j<7;j++){
-            cout<<"---fecha----"<<endl;
-        aux = matriz[i][j];
+        //cout<<"---equipo----"<<endl;
+        for (int j=0; j<64 ;j++){
+            //cout<<"---fecha----"<<endl;
+            aux = matriz[i][j];
             while (aux != NULL) {
-                cout << aux->info.fecha << " ";
-                cout << aux->info.jugador << " ";
-                cout << aux->info.goles << endl;
+                cout << "el " << aux->info.fecha;
+                cout << " " << aux->info.jugador;
+                cout << " hizo " << aux->info.goles << " goles" << endl;
                 aux = aux->sgte;
             }
         }
     }
 }
 
-void mostrarGolesPorEquipo(GolesJugador* matriz[][7]) {
+void mostrarGolesPorEquipo(GolesJugador* matriz[][64]) {
     char paises[32][13]= 
     {
         "ARGENTINA",
@@ -157,7 +124,7 @@ void mostrarGolesPorEquipo(GolesJugador* matriz[][7]) {
     for (int i = 0; i < 32; i++) {
         goles = 0;
         cout << paises[i];
-        for (int j = 0; j < 32; j++) {
+        for (int j = 0; j < 64; j++) {
             aux = matriz[i][j];
 
             while (aux != NULL) {

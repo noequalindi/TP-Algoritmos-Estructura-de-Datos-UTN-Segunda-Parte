@@ -5,10 +5,12 @@
 using namespace std;
 
 #include "Ejercicio1.hpp"
-#include "Ejercicio1.cpp" //incluido para compilar en vscode
+//incluido para compilar en vscode
+//#include "Ejercicio1.cpp"
 
 #include "Ejercicio2.hpp"
-#include "Ejercicio2.cpp"
+//incluido para compilar en vscode
+//#include "Ejercicio2.cpp"
 #include "structs.hpp"
 
 int main() {
@@ -39,21 +41,15 @@ int main() {
     // **********************************
     // *** EJERCICIO 2 ******************
     // **********************************
-    // Este array es la matriz: 32 posiciones de punteros
-    	GolesJugador* matriz[32][7];
+    // Este array es la matriz: 32x64 posiciones de punteros
+    GolesJugador* matriz[32][64];
     // este método inicializa la matriz lee el archivo y llena la matriz
-		llenarMatriz(matriz);
+    llenarMatriz(matriz);
     // la muestro para verificarla
-		mostrarMatriz(matriz);
-    // la matriz ya tiene esta forma
-    // [0] -> info, sgte -> info, sgte -> ...
-    // [...]
-    // [31] -> info, sgte -> info, sgte -> ...
-    	//mostrarGolesPorEquipo(matriz);
-    
+    mostrarMatriz(matriz);
+    mostrarGolesPorEquipo(matriz);
     
 	// procesarRegistroDeGoles(fileRegistroDeGoles, partidos, equipos);
-	
 	/*
 	agregarPartido(partido, codigo_equipo, id_partido, id_gol, nombre_jugador, fecha);
 	buscarEInsertarPartido(partidos, infoGol);
