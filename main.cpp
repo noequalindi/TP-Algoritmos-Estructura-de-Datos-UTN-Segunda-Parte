@@ -11,6 +11,8 @@ using namespace std;
 //incluido para compilar en vscode
 //#include "Ejercicio2.cpp"
 #include "structs.hpp"
+#include "Ejercicio3.hpp"
+
 
 int main() {
 	nodoArbol * arbol = NULL;
@@ -49,12 +51,11 @@ int main() {
     mostrarGolesPorEquipo(matriz);
     mostrarGolesPorFecha(matriz);
     mostrarGolesPorJugador(matriz);
-//    procesarRegistroDeGoles(fileRegistroDeGoles, partidos, equipos);
-//    agregarPartido(partido, codigo_equipo, id_partido, id_gol, nombre_jugador, fecha);
-//    buscarEInsertarPartido(partidos, infoGol);
-//    insertarOrdenadoPartido(partidos, infoGol);
-//    BuscarPartido(partido, numeroPartido);
-//    mostrarPartidos(partido);
+
+//EJERCICIO 3 
+nodoArbolEquipo * arbolEquipos = NULL;
+arbolEquipos = matrizEnArbol(matriz);
+inOrdenGoles(arbolEquipos);
 //    system("Pause");
 	return 0;
 }
