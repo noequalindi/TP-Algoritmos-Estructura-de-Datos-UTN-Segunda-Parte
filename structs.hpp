@@ -52,8 +52,8 @@ struct Nodo {
 };
 struct nodoArbolEquipo
 {
-	nodoArbol* izq;
-    Info infoGoles;
-    nodoArbol* der;
+	nodoArbolEquipo* izq;
+    Info infoGoles; 
+    nodoArbolEquipo* der;
 };
 #endif /* structs_hpp */
