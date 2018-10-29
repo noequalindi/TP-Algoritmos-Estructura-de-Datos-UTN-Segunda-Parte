@@ -7,7 +7,8 @@ using namespace std;
 #include "Ejercicio1.hpp"
 #include "structs.hpp"
 
-void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con informacion en memoria.
+//Generamos vector con informacion en memoria.
+void cargarRegistroDeGoles(RegistroDeGoles goles[])
 {
     goles[0].id_gol=0;
     strcpy(goles[0].nombre_jugador,"Aleksandr Golovin");
@@ -198,9 +199,9 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
     strcpy(goles[4].nombre_jugador,"Yuriy Gazinskiy");
     strcpy(goles[5].nombre_jugador,"José María Giménez");
     strcpy(goles[6].nombre_jugador,"Aziz Bouhaddouz");
-    strcpy(goles[7].nombre_jugador,"Cristiano Ronaldo Av");
-    strcpy(goles[8].nombre_jugador,"Cristiano Ronaldo Av");
-    strcpy(goles[9].nombre_jugador,"Cristiano Ronaldo Av");
+    strcpy(goles[7].nombre_jugador,"Cristiano Ronaldo");
+    strcpy(goles[8].nombre_jugador,"Cristiano Ronaldo");
+    strcpy(goles[9].nombre_jugador,"Cristiano Ronaldo");
     strcpy(goles[10].nombre_jugador,"Diego Costa");
     
     strcpy(goles[11].nombre_jugador,"Diego Costa");
@@ -211,10 +212,10 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
     strcpy(goles[16].nombre_jugador,"Yussuf Yurary Poulse");
     strcpy(goles[17].nombre_jugador,"Sergio Agüero");
     strcpy(goles[18].nombre_jugador,"Alfreð Finnbason");
-    strcpy(goles[19].nombre_jugador,"henekaro Etebo");
+    strcpy(goles[19].nombre_jugador,"Henekaro Etebo");
     strcpy(goles[20].nombre_jugador,"Luka Modrić");
     strcpy(goles[21].nombre_jugador,"Aleksandar Kolarov");
-    strcpy(goles[22].nombre_jugador,"Philippe Coutinho Co");
+    strcpy(goles[22].nombre_jugador,"Philippe Coutinho");
     strcpy(goles[23].nombre_jugador,"Steven Zuber");
     strcpy(goles[24].nombre_jugador,"Hirving Lozano");
     strcpy(goles[25].nombre_jugador,"Andreas Granqvist");
@@ -235,7 +236,7 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
     strcpy(goles[40].nombre_jugador,"MBaye Niang");
     strcpy(goles[41].nombre_jugador,"Thiago Cionek");
     strcpy(goles[42].nombre_jugador,"Luis Suárez");
-    strcpy(goles[43].nombre_jugador,"Cristiano Ronaldo Av");
+    strcpy(goles[43].nombre_jugador,"Cristiano Ronaldo");
     strcpy(goles[44].nombre_jugador,"Diego Costa");
     strcpy(goles[45].nombre_jugador,"Mile Jedinak");
     strcpy(goles[46].nombre_jugador,"Christian Eriksen");
@@ -245,8 +246,8 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
     strcpy(goles[50].nombre_jugador,"Luka Modrić");
     strcpy(goles[51].nombre_jugador,"Ahmed Musa");
     strcpy(goles[52].nombre_jugador,"Ahmed Musa");
-    strcpy(goles[53].nombre_jugador,"Neymar Santos Júnior");
-    strcpy(goles[54].nombre_jugador,"Philippe Coutinho Co");
+    strcpy(goles[53].nombre_jugador,"Neymar Santos");
+    strcpy(goles[54].nombre_jugador,"Philippe Coutinho");
     strcpy(goles[55].nombre_jugador,"Aleksandar Mitrović");
     strcpy(goles[56].nombre_jugador,"Granit Xhaka");
     strcpy(goles[57].nombre_jugador,"Xherdan Shaqiri");
@@ -274,8 +275,8 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
     strcpy(goles[79].nombre_jugador,"Takashi Inui");
     strcpy(goles[80].nombre_jugador,"Moussa Wagué");
     strcpy(goles[81].nombre_jugador,"Sadio Mané");
-    strcpy(goles[82].nombre_jugador,"Juan Guillermo Cuadr");
-    strcpy(goles[83].nombre_jugador,"Radamel Falcao Garcí");
+    strcpy(goles[82].nombre_jugador,"Juan Guillermo");
+    strcpy(goles[83].nombre_jugador,"Radamel Falcao");
     strcpy(goles[84].nombre_jugador,"Yerry Mina");
     strcpy(goles[85].nombre_jugador,"Mohammed Salah");
     strcpy(goles[86].nombre_jugador,"Salem Ad-Dawsari");
@@ -284,7 +285,7 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
     strcpy(goles[89].nombre_jugador,"Edinson Cavani");
     strcpy(goles[90].nombre_jugador,"Luis Suárez");
     strcpy(goles[91].nombre_jugador,"Karim Ansarifard");
-    strcpy(goles[92].nombre_jugador,"Ricardo Quaresma Ber");
+    strcpy(goles[92].nombre_jugador,"Ricardo Quaresma");
     strcpy(goles[93].nombre_jugador,"Khalid Boutaïb");
     strcpy(goles[94].nombre_jugador,"Youssef En-Nesyri");
     strcpy(goles[95].nombre_jugador,"Iago Aspas");
@@ -293,7 +294,7 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
     strcpy(goles[98].nombre_jugador,"Paolo Guerrero");
     strcpy(goles[99].nombre_jugador,"Ivan Perišić");
     strcpy(goles[100].nombre_jugador,"Milan Badelj");
-    strcpy(goles[101].nombre_jugador,"Gylfi Þór Sigurðsson");
+    strcpy(goles[101].nombre_jugador,"Gylfi Þór Sigu");
     strcpy(goles[102].nombre_jugador,"Lionel Messi");
     strcpy(goles[103].nombre_jugador,"Marcos Rojo");
     strcpy(goles[104].nombre_jugador,"Victor Moses");
@@ -310,7 +311,7 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
     strcpy(goles[115].nombre_jugador,"Ludwig Augustinsson");
     strcpy(goles[116].nombre_jugador,"Adnan Januzaj");
     strcpy(goles[117].nombre_jugador,"Yassine Meriah");
-    strcpy(goles[118].nombre_jugador,"Fakhreddine Ben Yous");
+    strcpy(goles[118].nombre_jugador,"Fakhreddine Ben");
     strcpy(goles[119].nombre_jugador,"Wahbi Khazri");
     strcpy(goles[120].nombre_jugador,"Jan Bednarek");
     strcpy(goles[121].nombre_jugador,"Yerry Mina");
@@ -321,15 +322,15 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
     strcpy(goles[126].nombre_jugador,"Benjamin Pavard");
     strcpy(goles[127].nombre_jugador,"Kylian Mbappé");
     strcpy(goles[128].nombre_jugador,"Kylian Mbappé");
-    strcpy(goles[129].nombre_jugador,"Képler Ferreira Pepe");
+    strcpy(goles[129].nombre_jugador,"Képler Ferreira");
     strcpy(goles[130].nombre_jugador,"Edinson Cavani");
     strcpy(goles[131].nombre_jugador,"Edinson Cavani");
     strcpy(goles[132].nombre_jugador,"Artyom Dzyuba");
     strcpy(goles[133].nombre_jugador,"Sergey Ignashevich");
     strcpy(goles[134].nombre_jugador,"Mario Mandžukić");
     strcpy(goles[135].nombre_jugador,"Mathias Jørgensen");
-    strcpy(goles[136].nombre_jugador,"Neymar Santos Júnior");
-    strcpy(goles[137].nombre_jugador,"Roberto Firmino de O");
+    strcpy(goles[136].nombre_jugador,"Neymar Santos");
+    strcpy(goles[137].nombre_jugador,"Roberto Firmino");
     strcpy(goles[138].nombre_jugador,"Jan Vertonghen");
     strcpy(goles[139].nombre_jugador,"Marouane Fellaini");
     strcpy(goles[140].nombre_jugador,"Nacer Chadli");
@@ -340,7 +341,7 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
     strcpy(goles[145].nombre_jugador,"Harry Kane");
     strcpy(goles[146].nombre_jugador,"Antoine Griezmann");
     strcpy(goles[147].nombre_jugador,"Raphaël Varane");
-    strcpy(goles[148].nombre_jugador,"Fernando Roza Fernan");
+    strcpy(goles[148].nombre_jugador,"Fernando Roza");
     strcpy(goles[149].nombre_jugador,"Kevin De Bruyne");
     strcpy(goles[150].nombre_jugador,"Renato Augusto");
     strcpy(goles[151].nombre_jugador,"Dele Alli");
@@ -360,9 +361,9 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
     strcpy(goles[165].nombre_jugador,"Antoine Griezmann");
     strcpy(goles[166].nombre_jugador,"Kylian Mbappé");
     strcpy(goles[167].nombre_jugador,"Mario Mandžukić");
-    strcpy(goles[168].nombre_jugador,"Paul Pba");
+    strcpy(goles[168].nombre_jugador,"Paul Pogba");
     strcpy(goles[167].nombre_jugador,"Mario Mandžukić");
-    strcpy(goles[168].nombre_jugador,"Paul Pba");
+    strcpy(goles[168].nombre_jugador,"Paul Pogba");
 
     goles[2].codigo_equipo=22;
     goles[3].codigo_equipo=22;
@@ -373,7 +374,6 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
     goles[8].codigo_equipo=21;
     goles[9].codigo_equipo=21;
     goles[10].codigo_equipo=27;
-    
     goles[11].codigo_equipo=27;
     goles[12].codigo_equipo=27;
     goles[13].codigo_equipo=1;
@@ -535,8 +535,6 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
     goles[167].codigo_equipo=10;
     goles[168].codigo_equipo=10;
     
-
-
 	goles[2].fecha=20180614;
 	goles[3].fecha=20180614;
 	goles[4].fecha=20180614;
@@ -546,7 +544,6 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
 	goles[8].fecha=20180615;
 	goles[9].fecha=20180615;
 	goles[10].fecha=20180615;
-  
 	goles[11].fecha=20180615;
 	goles[12].fecha=20180615;
 	goles[13].fecha=20180616;
@@ -708,8 +705,6 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
 	goles[167].fecha=20180715;
 	goles[168].fecha=20180715;
 
-
-
     goles[0].id_partido=1;
     goles[1].id_partido=1;
     goles[2].id_partido=1;
@@ -721,7 +716,6 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[]) //Generamos vector con infor
     goles[8].id_partido=4;
     goles[9].id_partido=4;
     goles[10].id_partido=4;
-    
     goles[11].id_partido=4;
     goles[12].id_partido=4;
     goles[13].id_partido=5;
@@ -888,13 +882,13 @@ nodoArbol * VectorAArbol(RegistroDeGoles goles[], int lenGoles) 	//Cargamos la i
 {
 	nodoArbol * raiz = NULL;
 	for(int i=0; i<lenGoles; i++) {
-        insertarNodo(raiz,goles[i]);
+        insertarNodo(raiz, goles[i]);
     }
     return raiz;
 }
 
-
-void generarRegistro(nodoArbol* arbol)	// Leemos el arbol con metodo InOrden y guardamos en archivo.
+// Leemos el arbol con metodo InOrden y guardamos en archivo.
+void generarRegistro(nodoArbol* arbol)
 {
 	FILE * fileRegistroDeGoles = fopen("RegistroGoles.dat", "wb");
 
@@ -904,7 +898,8 @@ void generarRegistro(nodoArbol* arbol)	// Leemos el arbol con metodo InOrden y g
 	return;
 }
 
-void mostrarRegistroDeGoles()  	// Mostramos contenido en consola, recorriendo el archivo, para verificacion.
+// Mostramos contenido en consola, recorriendo el archivo, para verificacion.
+void mostrarRegistroDeGoles()
 {
     FILE * fileRegistroDeGoles = fopen("RegistroGoles.dat", "rb");
     RegistroDeGoles regGoles;
@@ -998,9 +993,6 @@ void inOrden(nodoArbol* arbol, FILE*& fileRegistroDeGoles)
         regGoles.id_gol = arbol->info.id_gol;
         regGoles.id_partido = arbol->info.id_partido;
         strcpy(regGoles.nombre_jugador, arbol->info.nombre_jugador);
-
-        cout << regGoles.nombre_jugador << endl;
-
         fwrite(&regGoles, sizeof(RegistroDeGoles), 1, fileRegistroDeGoles);
 		inOrden(arbol->der, fileRegistroDeGoles);
 	}
