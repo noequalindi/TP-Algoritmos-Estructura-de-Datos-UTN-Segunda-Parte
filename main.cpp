@@ -7,7 +7,6 @@ using namespace std;
 #include "Ejercicio1.hpp"
 //incluido para compilar en vscode
 //#include "Ejercicio1.cpp"
-
 #include "Ejercicio2.hpp"
 //incluido para compilar en vscode
 //#include "Ejercicio2.cpp"
@@ -45,18 +44,17 @@ int main() {
     GolesJugador* matriz[32][64];
     // este método inicializa la matriz lee el archivo y llena la matriz
     llenarMatriz(matriz);
-    // la muestro para verificarla
-    mostrarMatriz(matriz);
+//    la muestro para verificarla
+//    mostrarMatriz(matriz);
     mostrarGolesPorEquipo(matriz);
-    
-	// procesarRegistroDeGoles(fileRegistroDeGoles, partidos, equipos);
-	/*
-	agregarPartido(partido, codigo_equipo, id_partido, id_gol, nombre_jugador, fecha);
-	buscarEInsertarPartido(partidos, infoGol);
-	insertarOrdenadoPartido(partidos, infoGol);
-	BuscarPartido(partido, numeroPartido);
-	mostrarPartidos(partido);
-	*/
-	// system("Pause");
+    mostrarGolesPorFecha(matriz);
+    mostrarGolesPorJugador(matriz);
+//    procesarRegistroDeGoles(fileRegistroDeGoles, partidos, equipos);
+//    agregarPartido(partido, codigo_equipo, id_partido, id_gol, nombre_jugador, fecha);
+//    buscarEInsertarPartido(partidos, infoGol);
+//    insertarOrdenadoPartido(partidos, infoGol);
+//    BuscarPartido(partido, numeroPartido);
+//    mostrarPartidos(partido);
+//    system("Pause");
 	return 0;
 }

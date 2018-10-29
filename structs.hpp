@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef structs_hpp
 #define structs_hpp
 
@@ -48,9 +50,5 @@ struct Nodo {
     RegistroDeGoles info;
     Nodo* sgte;
 };
-
-// en el archivo struct no definimos variables
-// así no conflictuan con las variables de los métodos
-// GolesJugador * MatrizResultados [32][7];
 
 #endif /* structs_hpp */
