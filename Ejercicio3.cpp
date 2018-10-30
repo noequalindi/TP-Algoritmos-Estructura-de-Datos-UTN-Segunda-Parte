@@ -46,7 +46,8 @@ void cargarDatosParaArbol(GolesJugador * matriz[][64], arbolPaisesGoles vecPaise
     
     for (int i = 0; i < 32; i++) {
         goles = 0;
-        strcpy(vecPaisesGoles[i].nombre_pais, paises[i]);
+        
+        strcpy(vecPaisesGoles[i].nombre_pais, paises[i]); // se utiliza el vector nuevo para guardar la informacion de la matriz, con otra estructura diferente que contempla la cantidad de goles y el nombre del pais
         
         for (int j = 0; j < 64; j++) {
             aux = matriz[i][j];
@@ -55,10 +56,10 @@ void cargarDatosParaArbol(GolesJugador * matriz[][64], arbolPaisesGoles vecPaise
                 aux = aux->sgte;
                 
             }
-           vecPaisesGoles[i].cantGoles = goles;
+           vecPaisesGoles[i].cantGoles = goles; 
         }
    
-       cout << vecPaisesGoles[i].nombre_pais << ": " << vecPaisesGoles[i].cantGoles <<endl;
+       //cout << vecPaisesGoles[i].nombre_pais << ": " << vecPaisesGoles[i].cantGoles <<endl; 
     }
 	
     return;
@@ -67,7 +68,7 @@ nodoArbolEquipos * insertarPaisesYGolesEnArbol(arbolPaisesGoles vecPaisesGoles[]
 {
 	nodoArbolEquipos * raizEquipos = NULL;
 	for(int i=0; i < lenPaises; i++) {
-        insertarEnArbolDePaises(raizEquipos, vecPaisesGoles[i]);
+        insertarEnArbolDePaises(raizEquipos, vecPaisesGoles[i]); //se guarda la información del vector en el arbol binario
     }
     return raizEquipos;
 }
@@ -84,7 +85,7 @@ void insertarEnArbolDePaises(nodoArbolEquipos *&arbolEquipos, arbolPaisesGoles i
 		arbolEquipos = aux;
 	} else {
 		
-		if (infoGoles.cantGoles < arbolEquipos->info.cantGoles) 
+		if (infoGoles.cantGoles < arbolEquipos->info.cantGoles) // se ordena por cantidad de goles de cada equipo
 		{
         insertarEnArbolDePaises(arbolEquipos->izq, infoGoles);
     	
