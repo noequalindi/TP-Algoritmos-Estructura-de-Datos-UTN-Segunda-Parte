@@ -6,13 +6,12 @@ using namespace std;
 
 #include "Ejercicio1.hpp"
 //incluido para compilar en vscode
-#include "Ejercicio1.cpp"
+//#include "Ejercicio1.cpp"
 #include "Ejercicio2.hpp"
 //incluido para compilar en vscode
-#include "Ejercicio2.cpp"
+//#include "Ejercicio2.cpp"
 #include "structs.hpp"
 #include "Ejercicio3.hpp"
-#include "Ejercicio3.cpp"
 
 
 int main() {
@@ -53,7 +52,6 @@ int main() {
     mostrarGolesPorFecha(matriz);
     mostrarGolesPorJugador(matriz);
 
-<<<<<<< HEAD
 	
     // **********************************
     // *** EJERCICIO 3 ******************
@@ -65,12 +63,5 @@ int main() {
 	arbolEquipos = insertarPaisesYGolesEnArbol(vecPaisesGoles, lenPaises);
 	mostrarArbolEquipoYGoles(arbolEquipos);
 	system("Pause");
-=======
-//EJERCICIO 3 
-//nodoArbolEquipo * arbolEquipos = NULL;
-//arbolEquipos = matrizEnArbol(matriz);
-//inOrdenGoles(arbolEquipos);
-//    system("Pause");
->>>>>>> 65c042ac90202fd3f5ba760c911190c1472d1c01
 	return 0;
 }

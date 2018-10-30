@@ -51,22 +51,16 @@ struct Nodo {
     Nodo* sgte;
 };
 
-
 struct arbolPaisesGoles {
-	char nombre_pais [12];
+	char nombre_pais[20];
 	int cantGoles;
 };
 struct nodoArbolEquipos
 {
-<<<<<<< HEAD
 	nodoArbolEquipos* izq;
 	arbolPaisesGoles info;
     nodoArbolEquipos* der;
-=======
-	nodoArbolEquipo* izq;
-    Info infoGoles; 
-    nodoArbolEquipo* der;
->>>>>>> 65c042ac90202fd3f5ba760c911190c1472d1c01
+
 };
 
 #endif /* structs_hpp */
