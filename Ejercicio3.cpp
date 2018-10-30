@@ -3,6 +3,8 @@ using namespace std;
 #include <string.h>
 #include "structs.hpp"
 #include "Ejercicio3.hpp"
+
+//procedimiento para crear un vector auxiliar que contenga el nombre del pais y la cantidad de goles que hizo.
 void cargarDatosParaArbol(GolesJugador * matriz[][64], arbolPaisesGoles vecPaisesGoles[]) 
 {
 	char paises[32][13] = 
@@ -56,27 +58,28 @@ void cargarDatosParaArbol(GolesJugador * matriz[][64], arbolPaisesGoles vecPaise
                 aux = aux->sgte;
                 
             }
-           vecPaisesGoles[i].cantGoles = goles; 
+            vecPaisesGoles[i].cantGoles = goles; 
         }
-   
-       //cout << vecPaisesGoles[i].nombre_pais << ": " << vecPaisesGoles[i].cantGoles <<endl; 
     }
 	
     return;
 }
+
+//funcion para recorrer el vector auxiliar y enviar  la informacion sobre paises y la cantidad de goles que estos realizaron a un arbol binario.
 nodoArbolEquipos * insertarPaisesYGolesEnArbol(arbolPaisesGoles vecPaisesGoles[], int lenPaises) 	
 {
 	nodoArbolEquipos * raizEquipos = NULL;
 	for(int i=0; i < lenPaises; i++) {
-        insertarEnArbolDePaises(raizEquipos, vecPaisesGoles[i]); //se guarda la información del vector en el arbol binario
+        insertarEnArbolDePaises(raizEquipos, vecPaisesGoles[i]); //se guarda la informaciï¿½n del vector en el arbol binario
     }
     return raizEquipos;
 }
 
+//procedimiento estandard de insercion en arbol binario. 
 void insertarEnArbolDePaises(nodoArbolEquipos *&arbolEquipos, arbolPaisesGoles infoGoles) 
 {
     
-       	if(arbolEquipos == NULL) 
+        if(arbolEquipos == NULL) 
 		{
 		nodoArbolEquipos* aux = new nodoArbolEquipos();
 		aux->info = infoGoles;
@@ -100,7 +103,7 @@ void insertarEnArbolDePaises(nodoArbolEquipos *&arbolEquipos, arbolPaisesGoles i
 }
 
 
-
+//Procedimiento para recorrer el arbol binario de equipos usando el metodo InOrden, y mostrarlo en pantalla.
 void inOrdenGoles(nodoArbolEquipos *arbolEquipos)
 {
 	if (arbolEquipos != NULL)
@@ -112,6 +115,8 @@ void inOrdenGoles(nodoArbolEquipos *arbolEquipos)
 	}
 	return;
 }
+
+//procedimiento que imprime encabezado del listado solicitado
 void mostrarArbolEquipoYGoles(nodoArbolEquipos *arbolEquipos)
 {
 	cout << "____________________________________________"<<endl;
@@ -119,5 +124,3 @@ void mostrarArbolEquipoYGoles(nodoArbolEquipos *arbolEquipos)
 	inOrdenGoles(arbolEquipos);
 	return;
 }
-
-    

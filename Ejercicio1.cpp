@@ -877,23 +877,23 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[])
 	
 	return;
 }
-
-nodoArbol * VectorAArbol(RegistroDeGoles goles[], int lenGoles) 	//Cargamos la informacion a un arbol binario, siguiendo criterio de orden por Equipo y por fecha.
+//Copiamos la informacion a un arbol binario para ordenar los datos seguun la consigna.
+nodoArbolGoles * VectorAArbolGoles(RegistroDeGoles goles[], int lenGoles) 	//Cargamos la informacion a un arbol binario, siguiendo criterio de orden por Equipo y por fecha.
 {
-	nodoArbol * raiz = NULL;
+	nodoArbolGoles * raiz = NULL;
 	for(int i=0; i<lenGoles; i++) {
-        insertarNodo(raiz, goles[i]);
+        insertarNodoGoles(raiz, goles[i]);
     }
     return raiz;
 }
 
 // Leemos el arbol con metodo InOrden y guardamos en archivo.
-void generarRegistro(nodoArbol* arbol)
+void generarRegistro(nodoArbolGoles* arbolGoles)
 {
 	FILE * fileRegistroDeGoles = fopen("RegistroGoles.dat", "wb");
 
     // RegistroDeGoles regGoles;
-    inOrden(arbol, fileRegistroDeGoles);
+    inOrden(arbolGoles, fileRegistroDeGoles);
     fclose(fileRegistroDeGoles);
 	return;
 }
@@ -959,41 +959,42 @@ void mostrarRegistroDeGoles()
     fclose(fileRegistroDeGoles);
 }
 
-void insertarNodo(nodoArbol* &ptrArbol, RegistroDeGoles valor)
+//insertamos la informacion ordenada por equipo y fecha.
+void insertarNodoGoles(nodoArbolGoles* &ptrArbolGoles, RegistroDeGoles valor)
 {
-	if(ptrArbol==NULL) {
-		nodoArbol* aux=new nodoArbol();
+	if(ptrArbolGoles==NULL) {
+		nodoArbolGoles* aux=new nodoArbolGoles();
 		aux->info=valor;
 		aux->izq=NULL;
 		aux->der=NULL;
-		ptrArbol=aux;
-	} else if(valor.codigo_equipo < ptrArbol->info.codigo_equipo) {
-        insertarNodo(ptrArbol->izq, valor);
+		ptrArbolGoles=aux;
+	} else if(valor.codigo_equipo < ptrArbolGoles->info.codigo_equipo) {
+        insertarNodoGoles(ptrArbolGoles->izq, valor);
     } else {
-        if(valor.codigo_equipo > ptrArbol->info.codigo_equipo) {
-            insertarNodo(ptrArbol->der, valor);
+        if(valor.codigo_equipo > ptrArbolGoles->info.codigo_equipo) {
+            insertarNodoGoles(ptrArbolGoles->der, valor);
         } else {
-            if(valor.fecha < ptrArbol->info.fecha) {
-                insertarNodo(ptrArbol->izq, valor);
+            if(valor.fecha < ptrArbolGoles->info.fecha) {
+                insertarNodoGoles(ptrArbolGoles->izq, valor);
             } else {
-                insertarNodo(ptrArbol->der, valor);
+                insertarNodoGoles(ptrArbolGoles->der, valor);
             }
         }
     }
 }
-
-void inOrden(nodoArbol* arbol, FILE*& fileRegistroDeGoles)
+//recorremos el arbol binario con metodo InOrden para guardar en archivo la informacion ordenada
+void inOrden(nodoArbolGoles* arbolGoles, FILE*& fileRegistroDeGoles)
 {
     RegistroDeGoles regGoles;
 
-	if(arbol!=NULL) {
-		inOrden(arbol->izq, fileRegistroDeGoles);
-        regGoles.codigo_equipo = arbol->info.codigo_equipo;
-    	regGoles.fecha = arbol->info.fecha;
-        regGoles.id_gol = arbol->info.id_gol;
-        regGoles.id_partido = arbol->info.id_partido;
-        strcpy(regGoles.nombre_jugador, arbol->info.nombre_jugador);
+	if(arbolGoles!=NULL) {
+		inOrden(arbolGoles->izq, fileRegistroDeGoles);
+        regGoles.codigo_equipo = arbolGoles->info.codigo_equipo;
+    	regGoles.fecha = arbolGoles->info.fecha;
+        regGoles.id_gol = arbolGoles->info.id_gol;
+        regGoles.id_partido = arbolGoles->info.id_partido;
+        strcpy(regGoles.nombre_jugador, arbolGoles->info.nombre_jugador);
         fwrite(&regGoles, sizeof(RegistroDeGoles), 1, fileRegistroDeGoles);
-		inOrden(arbol->der, fileRegistroDeGoles);
+		inOrden(arbolGoles->der, fileRegistroDeGoles);
 	}
 }

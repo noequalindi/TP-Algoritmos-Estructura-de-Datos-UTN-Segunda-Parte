@@ -3,6 +3,7 @@
 #ifndef structs_hpp
 #define structs_hpp
 
+
 struct RegistroDeGoles {
     int id_gol;
     int codigo_equipo;
@@ -11,10 +12,10 @@ struct RegistroDeGoles {
     int id_partido;
 };
 
-struct nodoArbol {
-    nodoArbol* izq;
+struct nodoArbolGoles {
+    nodoArbolGoles* izq;
     RegistroDeGoles info;
-    nodoArbol* der;
+    nodoArbolGoles* der;
 };
 
 struct Info {
@@ -28,6 +29,7 @@ struct GolesJugador {
     GolesJugador *sgte;
 };
 
+
 struct Equipo {
     int codigo_equipo;
     RegistroDeGoles infoGol;
@@ -38,6 +40,7 @@ struct Partido {
     Equipo equipos;
     Partido* sgtePartido;
 };
+
 
 struct InfoGoles {
     char nombre_jugador[20];

@@ -7,11 +7,11 @@ using namespace std;
 #include "Ejercicio2.hpp"
 #include "structs.hpp"
 
-void llenarMatriz(GolesJugador* matriz[][64]) {
+void llenarMatriz(GolesJugador* matrizGoles[][64]) {
     // inicia con punteros vacios
     for (int i = 0; i < 32; i++) {
         for(int j = 0; j < 64; j++) {
-            matriz[i][j] = NULL;
+            matrizGoles[i][j] = NULL;
         }
     }
     
@@ -20,19 +20,22 @@ void llenarMatriz(GolesJugador* matriz[][64]) {
     
     fread(&regGol, sizeof(RegistroDeGoles), 1, fileRegistroDeGoles);
     while(!feof(fileRegistroDeGoles)) {
-        insertarOSumar(matriz[regGol.codigo_equipo][regGol.id_partido], regGol.fecha, regGol.nombre_jugador);
+        //se agregan los datos a la matriz segun informacion de los registros y consigna
+        insertarOSumar(matrizGoles[regGol.codigo_equipo][regGol.id_partido], regGol.fecha, regGol.nombre_jugador);
         fread(&regGol, sizeof(RegistroDeGoles), 1, fileRegistroDeGoles);
     }
     
     fclose(fileRegistroDeGoles);
 }
 
+//procedimiento para agregar los datos a la matriz segun informacion de los registros y consigna
 
 void insertarOSumar(GolesJugador*& p, long fecha, char nombre_jugador[20]) {
     GolesJugador* aux = p;
     GolesJugador* ant = NULL;
     GolesJugador* nuevo = new GolesJugador();
     
+    //creo nuevo registro para agregar, si aplica. 
     nuevo->info.fecha = fecha;
     strcpy(nuevo->info.jugador, nombre_jugador);
     nuevo->info.goles = 1;
@@ -64,14 +67,15 @@ void insertarOSumar(GolesJugador*& p, long fecha, char nombre_jugador[20]) {
     }
 }
 
-void mostrarMatriz(GolesJugador* matriz[][64]) {
+//Procedimiento para recorrer la matriz y mostrar su contenido.
+void mostrarMatriz(GolesJugador* matrizGoles[][64]) {
     GolesJugador* aux = NULL;
     
     for (int i = 0; i < 32; i++) {
-        //cout<<"---equipo----"<<endl;
+        
         for (int j=0; j<64 ;j++){
-            //cout<<"---fecha----"<<endl;
-            aux = matriz[i][j];
+            
+            aux = matrizGoles[i][j];
             while (aux != NULL) {
                 cout << "el " << aux->info.fecha;
                 cout << " " << aux->info.jugador;
@@ -82,7 +86,7 @@ void mostrarMatriz(GolesJugador* matriz[][64]) {
     }
 }
 
-void mostrarGolesPorEquipo(GolesJugador* matriz[][64]) {
+void mostrarGolesPorEquipo(GolesJugador* matrizGoles[][64]) {
     char paises[32][13]= 
     {
         "ARGENTINA",
@@ -130,7 +134,7 @@ void mostrarGolesPorEquipo(GolesJugador* matriz[][64]) {
         goles = 0;
         cout << paises[i];
         for (int j = 0; j < 64; j++) {
-            aux = matriz[i][j];
+            aux = matrizGoles[i][j];
 
             while (aux != NULL) {
                 goles += aux->info.goles;
@@ -143,7 +147,7 @@ void mostrarGolesPorEquipo(GolesJugador* matriz[][64]) {
     cout << "vvvvvvvvvvvvvvvvvvvvvvvvvv" << endl << endl;
 }
 
-void mostrarGolesPorFecha(GolesJugador* matriz[][64]) {
+void mostrarGolesPorFecha(GolesJugador* matrizGoles[][64]) {
     char paises[32][13]=
     {
         "ARGENTINA",
@@ -189,7 +193,7 @@ void mostrarGolesPorFecha(GolesJugador* matriz[][64]) {
     
     for (int i = 0; i < 64; i++) {
         for (int j = 0; j < 32; j++) {
-            aux = matriz[j][i];
+            aux = matrizGoles[j][i];
             
             while (aux != NULL) {
                 if (fechaAnterior != aux->info.fecha) {
@@ -207,7 +211,9 @@ void mostrarGolesPorFecha(GolesJugador* matriz[][64]) {
     cout << "vvvvvvvvvvvvvvvvvvvvvvvvvv" << endl << endl;
 }
 
-void mostrarGolesPorJugador(GolesJugador* matriz[][64]) {
+
+//El procedimiento recorre la matriz e inserta los jugadores ordenados por cantidad de goles en una lista dinamica.
+void mostrarGolesPorJugador(GolesJugador* matrizGoles[][64]) {
     char paises[32][13]=
     {
         "ARGENTINA",
@@ -254,7 +260,7 @@ void mostrarGolesPorJugador(GolesJugador* matriz[][64]) {
     
     for (int i = 0; i < 32; i++) {
         for (int j = 0; j < 64; j++) {
-            aux = matriz[i][j];
+            aux = matrizGoles[i][j];
             
             while (aux != NULL) {
                 buscarEInsertarOrdenado(goleadores, aux, encontrado);
@@ -268,6 +274,7 @@ void mostrarGolesPorJugador(GolesJugador* matriz[][64]) {
     cout << "vvvvvvvvvvvvvvvvvvvvvvvvvv" << endl << endl;
 }
 
+//Procedimiento que recorre una lista dinamica y muestra el contenido, segun consigna.
 void mostrarGoleadores(GolesJugador* goleadores) {
     GolesJugador* aux = goleadores;
 
@@ -278,6 +285,7 @@ void mostrarGoleadores(GolesJugador* goleadores) {
     }
 }
 
+//funcion para insertar un nodo en la lista dinamica, en el orden correspondiente. Si la lista esta vacia, agrega el 1er nodo.
 GolesJugador* insertarOrdenado(GolesJugador*& goleadores, GolesJugador* p) {
     GolesJugador* nuevo = new GolesJugador();
     strcpy(nuevo->info.jugador, p->info.jugador);
@@ -300,6 +308,7 @@ GolesJugador* insertarOrdenado(GolesJugador*& goleadores, GolesJugador* p) {
     return nuevo;
 }
 
+//funcion para buscar un jugador, devuelve puntero a la posicion en la lista donde esta el jugador, o NULL si no lo encuentra.
 GolesJugador* buscar(GolesJugador* p, char nombre_jugador[20]) {
     GolesJugador* aux = p;
     while(aux!=NULL && strcmp(aux->info.jugador, nombre_jugador) != 0) {
@@ -308,6 +317,7 @@ GolesJugador* buscar(GolesJugador* p, char nombre_jugador[20]) {
     return aux;
 }
 
+// funcion para buscar  un jugador en una lista, si existe sumarle goles, y si no insertar un elemento ordenado en la lista. 
 GolesJugador* buscarEInsertarOrdenado(GolesJugador*& goleadores, GolesJugador* p, bool &enc) {
     GolesJugador* buscado = buscar(goleadores, p->info.jugador);
     if(buscado == NULL) {
@@ -319,31 +329,5 @@ GolesJugador* buscarEInsertarOrdenado(GolesJugador*& goleadores, GolesJugador* p
     }
     return buscado;
 }
-void OcupacionMatriz (GolesJugador *  MatrizResultados[][7]) {
-    int goles=0,total=0;
 
-        for(int i=0;i<32;i++){
-            cout << i <<"-";
-            for(int j=0;j<7;j++){
-                if (MatrizResultados[i][j]==NULL) cout << "x" ;
-                else {
-                        GolesJugador* aux = MatrizResultados[i][j];
-                        while( aux!=NULL ) { 
-                        goles=goles+aux->info.goles;    
-                        aux = aux->sgte; 
-                        } 
-                        cout << goles;
-                        total=total+goles;
-                        goles=0;
-                }
-            
-        }
-        cout << endl;
-    }
-    cout << endl<<total;
-}
 
-void mostrarPartidos(Partido* partido) 
-{ 
-
-}

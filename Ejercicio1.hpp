@@ -4,14 +4,14 @@
 #include "structs.hpp"
 
 void cargarRegistroDeGoles(RegistroDeGoles goles[]);
-void generarRegistro(nodoArbol* arbol);
+void generarRegistro(nodoArbolGoles* arbolGoles);
 void mostrarRegistroDeGoles();
 
 
 Nodo * VectorArbol(RegistroDeGoles goles[], int lenGoles);
-nodoArbol * VectorAArbol(RegistroDeGoles goles[], int lenGoles); 	//Cargamos la informacion a un arbol binario, siguiendo criterio de orden por Equipo y por fecha.
+nodoArbolGoles * VectorAArbol(RegistroDeGoles goles[], int lenGoles); 	//Cargamos la informacion a un arbol binario, siguiendo criterio de orden por Equipo y por fecha.
 
-void insertarNodo(nodoArbol* &arbol,RegistroDeGoles valor);
-void inOrden(nodoArbol* arbol, FILE* &fileRegistroDeGoles);
+void insertarNodoGoles(nodoArbolGoles* &arbolGoles,RegistroDeGoles valor);
+void inOrden(nodoArbolGoles* arbolGoles, FILE* &fileRegistroDeGoles);
 
 #endif // Ejercicio1
