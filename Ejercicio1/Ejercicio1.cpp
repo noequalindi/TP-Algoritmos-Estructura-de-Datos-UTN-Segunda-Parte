@@ -4,7 +4,7 @@
 #include <cstdlib>
 using namespace std;
 
-#include "Ejercicio1.hpp"
+#include "Ejercicio1.hpp"  
 #include "structs.hpp"
 
 //Generamos vector con informacion en memoria.

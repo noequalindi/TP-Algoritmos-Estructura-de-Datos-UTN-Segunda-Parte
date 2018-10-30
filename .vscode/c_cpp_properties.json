@@ -4,7 +4,10 @@
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}",
-                "/Users/canteros/Documents/Algoritmos/TP_AyED_Segunda_Parte/"
+                "/Users/canteros/Documents/Algoritmos/TP_AyED_Segunda_Parte/",
+                "/Users/canteros/Documents/Algoritmos/TP_AyED_Segunda_Parte/Ejercicio1/",
+                "/Users/canteros/Documents/Algoritmos/TP_AyED_Segunda_Parte/Ejercicio2/",
+                "/Users/canteros/Documents/Algoritmos/TP_AyED_Segunda_Parte/Ejercicio3/"
             ],
             "defines": [],
             "macFrameworkPath": [
