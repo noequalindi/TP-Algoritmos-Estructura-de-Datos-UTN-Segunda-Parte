@@ -3,7 +3,7 @@ using namespace std;
 #include <string.h>
 #include "structs.hpp"
 #include "Ejercicio3.hpp"
-nodoArbolEquipo * matrizEnArbol(GolesJugador * matriz[][64]) 
+void cargarDatosParaArbol(GolesJugador * matriz[][64], arbolPaisesGoles vecPaisesGoles[]) 
 {
 	char paises[32][13] = 
     {
@@ -40,61 +40,82 @@ nodoArbolEquipo * matrizEnArbol(GolesJugador * matriz[][64])
         "TUNISIA",
         "URUGUAY"
     };
+    
     int goles;	
 	GolesJugador* aux = NULL;
-    nodoArbolEquipo * raiz = NULL;
     
     for (int i = 0; i < 32; i++) {
         goles = 0;
-        cout << paises[i] << " ";
+        strcpy(vecPaisesGoles[i].nombre_pais, paises[i]);
+        
         for (int j = 0; j < 64; j++) {
             aux = matriz[i][j];
             while (aux != NULL) {
                 goles += aux->info.goles;
-                insertarEnArbol(raiz, goles);
                 aux = aux->sgte;
                 
             }
-      
+           vecPaisesGoles[i].cantGoles = goles;
         }
-       
+   
+       cout << vecPaisesGoles[i].nombre_pais << ": " << vecPaisesGoles[i].cantGoles <<endl;
     }
 	
-    return raiz;
+    return;
 }
-    
-void insertarEnArbol(nodoArbolEquipo *&arbolEquipos, Info infogoles) {
-    
-       if (arbolEquipos == NULL)
-    	{
-    	nodoArbolEquipo* nuevo = new nodoArbolEquipo();
-     
-       nuevo->infoGoles.goles = infogoles.goles;
-       nuevo->izq = NULL;
-       nuevo->der = NULL;
-    	} else 
-		{
-    	if (infogoles.goles < arbolEquipos->infoGoles.goles)
-    	{
-		
-    	insertarEnArbol(arbolEquipos->izq, infogoles);
-    	} else { 
-    	insertarEnArbol(arbolEquipos->der, infogoles);
-	
-	}
-}
-
-}
-
-
-void inOrdenGoles(nodoArbolEquipo *arbolEquipos)
+nodoArbolEquipos * insertarPaisesYGolesEnArbol(arbolPaisesGoles vecPaisesGoles[], int lenPaises) 	
 {
-	while (arbolEquipos != NULL)
+	nodoArbolEquipos * raizEquipos = NULL;
+	for(int i=0; i < lenPaises; i++) {
+        insertarEnArbolDePaises(raizEquipos, vecPaisesGoles[i]);
+    }
+    return raizEquipos;
+}
+
+void insertarEnArbolDePaises(nodoArbolEquipos *&arbolEquipos, arbolPaisesGoles infoGoles) 
+{
+    
+       	if(arbolEquipos == NULL) 
+		{
+		nodoArbolEquipos* aux = new nodoArbolEquipos();
+		aux->info = infoGoles;
+		aux->izq = NULL;
+		aux->der = NULL;
+		arbolEquipos = aux;
+	} else {
+		
+		if (infoGoles.cantGoles < arbolEquipos->info.cantGoles) 
+		{
+        insertarEnArbolDePaises(arbolEquipos->izq, infoGoles);
+    	
+		} else {
+		if (infoGoles.cantGoles >= arbolEquipos->info.cantGoles) {
+            insertarEnArbolDePaises(arbolEquipos->der, infoGoles);
+        } 
+		}
+
+	}
+        return;
+}
+
+
+
+void inOrdenGoles(nodoArbolEquipos *arbolEquipos)
+{
+	if (arbolEquipos != NULL)
 	{
+
 		inOrdenGoles(arbolEquipos->izq);
-		cout << arbolEquipos->infoGoles.goles << endl;
+		cout << arbolEquipos->info.nombre_pais << ": "<< arbolEquipos->info.cantGoles << endl;
 		inOrdenGoles(arbolEquipos->der);
 	}
+	return;
+}
+void mostrarArbolEquipoYGoles(nodoArbolEquipos *arbolEquipos)
+{
+	cout << "____________________________________________"<<endl;
+	cout << " ********* EQUIPOS ORDENADOS POR CANTIDAD GOLES EN ORDEN (MENOR A MAYOR) ******** "<< endl;
+	inOrdenGoles(arbolEquipos);
 	return;
 }
 

@@ -50,10 +50,17 @@ struct Nodo {
     RegistroDeGoles info;
     Nodo* sgte;
 };
-struct nodoArbolEquipo
-{
-	nodoArbol* izq;
-    Info infoGoles;
-    nodoArbol* der;
+
+
+struct arbolPaisesGoles {
+	char nombre_pais [12];
+	int cantGoles;
 };
+struct nodoArbolEquipos
+{
+	nodoArbolEquipos* izq;
+	arbolPaisesGoles info;
+    nodoArbolEquipos* der;
+};
+
 #endif /* structs_hpp */

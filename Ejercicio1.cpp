@@ -946,7 +946,7 @@ void mostrarRegistroDeGoles()
     cout << "_______________________________________________________________" << endl;
     while (!feof(fileRegistroDeGoles)) {
         cout << "EQUIPO:         " << paises[regGoles.codigo_equipo] << endl;
-        cout << "CÓDIGO:         " << regGoles.codigo_equipo << endl;
+        cout << "CODIGO:         " << regGoles.codigo_equipo << endl;
         cout << "FECHA:          " << regGoles.fecha << endl;
         cout << "ID DEL GOL:     " << regGoles.id_gol << endl;
         cout << "ID DEL PARTIDO: " << regGoles.id_partido << endl;

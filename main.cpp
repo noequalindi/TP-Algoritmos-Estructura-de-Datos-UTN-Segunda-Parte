@@ -52,10 +52,16 @@ int main() {
     mostrarGolesPorFecha(matriz);
     mostrarGolesPorJugador(matriz);
 
-//EJERCICIO 3 
-nodoArbolEquipo * arbolEquipos = NULL;
-arbolEquipos = matrizEnArbol(matriz);
-inOrdenGoles(arbolEquipos);
-//    system("Pause");
+	
+    // **********************************
+    // *** EJERCICIO 3 ******************
+    // **********************************
+	int lenPaises = 32;
+	arbolPaisesGoles vecPaisesGoles[lenPaises];
+	cargarDatosParaArbol(matriz, vecPaisesGoles);
+	nodoArbolEquipos * arbolEquipos = NULL;
+	arbolEquipos = insertarPaisesYGolesEnArbol(vecPaisesGoles, lenPaises);
+	mostrarArbolEquipoYGoles(arbolEquipos);
+	system("Pause");
 	return 0;
 }
