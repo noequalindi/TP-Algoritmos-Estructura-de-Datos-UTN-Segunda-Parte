@@ -6,15 +6,14 @@ using namespace std;
 
 #include "structs.hpp"
 
-#include "Ejercicio1.hpp"
-#include "Ejercicio1.cpp"//incluido para compilar en vscode
+#include "./Ejercicio1/Ejercicio1.cpp"
+// #include "Ejercicio1.cpp" //incluido para compilar en vscode
 
-#include "Ejercicio2.hpp"
-#include "Ejercicio2.cpp"//incluido para compilar en vscode
+#include "./Ejercicio2/Ejercicio2.cpp"
+// #include "Ejercicio2.cpp" //incluido para compilar en vscode
 
-
-#include "Ejercicio3.cpp" //incluido para compilar en vscode
-#include "Ejercicio3.hpp"
+#include "./Ejercicio3/Ejercicio3.cpp"
+// #include "Ejercicio3.cpp" //incluido para compilar en vscode
 
 
 int main() {
@@ -30,7 +29,7 @@ int main() {
 	// Generamos vector con informacion en memoria.
 	cargarRegistroDeGoles(goles);
 	// Cargamos la informacion a un arbol binario, siguiendo criterio de orden por Equipo y por fecha.
-	arbolGoles = VectorAArbolGoles(goles, lenGoles);
+	arbolGoles = VectorAArbol(goles, lenGoles);
 	// Leemos el arbol con metodo InOrden y guardamos en archivo.
 	generarRegistro(arbolGoles);
 	// Mostramos contenido en consola, recorriendo el archivo, para verificacion.

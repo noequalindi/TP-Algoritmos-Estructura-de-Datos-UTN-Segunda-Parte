@@ -5,7 +5,7 @@
 using namespace std;
 
 #include "Ejercicio2.hpp"
-#include "structs.hpp"
+#include "../structs.hpp"
 
 void llenarMatriz(GolesJugador* matrizGoles[][64]) {
     // inicia con punteros vacios

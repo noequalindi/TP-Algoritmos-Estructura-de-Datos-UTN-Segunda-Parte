@@ -4,8 +4,8 @@
 #include <cstdlib>
 using namespace std;
 
-#include "Ejercicio1.hpp"  
-#include "structs.hpp"
+#include "Ejercicio1.hpp"
+#include "../structs.hpp"
 
 //Generamos vector con informacion en memoria.
 void cargarRegistroDeGoles(RegistroDeGoles goles[])
@@ -878,7 +878,7 @@ void cargarRegistroDeGoles(RegistroDeGoles goles[])
 	return;
 }
 //Copiamos la informacion a un arbol binario para ordenar los datos seguun la consigna.
-nodoArbolGoles * VectorAArbolGoles(RegistroDeGoles goles[], int lenGoles) 	//Cargamos la informacion a un arbol binario, siguiendo criterio de orden por Equipo y por fecha.
+nodoArbolGoles * VectorAArbol(RegistroDeGoles goles[], int lenGoles) 	//Cargamos la informacion a un arbol binario, siguiendo criterio de orden por Equipo y por fecha.
 {
 	nodoArbolGoles * raiz = NULL;
 	for(int i=0; i<lenGoles; i++) {

@@ -1,7 +1,7 @@
 using namespace std;
 #include <iostream>
 #include <string.h>
-#include "structs.hpp"
+#include "../structs.hpp"
 #include "Ejercicio3.hpp"
 
 //procedimiento para crear un vector auxiliar que contenga el nombre del pais y la cantidad de goles que hizo.

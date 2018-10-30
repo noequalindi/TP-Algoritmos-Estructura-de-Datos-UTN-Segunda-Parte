@@ -3,7 +3,6 @@
 #ifndef structs_hpp
 #define structs_hpp
 
-
 struct RegistroDeGoles {
     int id_gol;
     int codigo_equipo;

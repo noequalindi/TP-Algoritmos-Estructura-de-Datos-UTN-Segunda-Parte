@@ -1,7 +1,8 @@
 #ifndef Ejercicio2
 #define Ejercicio2
+
 #include <stdio.h>
-#include "structs.hpp"
+#include "../structs.hpp"
 
 void llenarMatriz(GolesJugador* matriz[][64]);
 void mostrarMatriz(GolesJugador* matriz[][64]);
@@ -15,6 +16,5 @@ GolesJugador* buscar(GolesJugador* p, char nombre_jugador[20]);
 GolesJugador* buscarEInsertarOrdenado(GolesJugador* &goleadores, GolesJugador* p, bool &enc);
 
 void insertarOSumar(GolesJugador*& p, long fecha, char nombre_jugador[20]);
-
 
 #endif
